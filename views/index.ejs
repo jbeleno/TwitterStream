@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
 
     <!-- Required meta tags always come first -->
@@ -10,17 +10,52 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-    
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <!-- Custom CSS -->
     <link rel='stylesheet' href='/css/custom.css' />
-  </head>
-  <body class="blurred-background">
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+</head>
+<body class="blurred-background">
+    <div class="container">
+        <div class="row text-center">
+            <div class="login-container">
+                <div class="login-decoration"></div>
+                
+                <div class="login-content">
+                    <h1 class="login-title"><strong>SIGN IN</strong></h1>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="user">User</label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-user" aria-hidden="true"></span></div>
+                          <input type="text" class="form-control" id="user" placeholder="User">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="password">User</label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key" aria-hidden="true"></span></div>
+                          <input type="text" class="form-control" id="password" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-lg btn-green btn-block">SIGN IN</button>
+
+                </div>
+                <!-- /.login-content -->
+            </div>
+            <!-- /.login-container -->
+        </div>
+        <!-- /.text-center -->
+    </div>
+    <!-- /.container -->
 
     <!-- jQuery first, then Theter and finally Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+</body>
 </html>

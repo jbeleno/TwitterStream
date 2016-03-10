@@ -1,13 +1,29 @@
 /******************************** <VARIABLES> ********************************/
 
-$font-custom: "Lucida Grande", Helvetica, Arial, sans-serif;
-$font-custom-size: 14px;
 $body-padding: 50px;
+$btn-radius: 0.125em;
+$color-primary-dark: #00796B;
+$color-primary: #009688;
+$color-white: #FFFFFF; 
+$font-custom: "Lucida Grande", Helvetica, Arial, sans-serif;
+$font-custom-size: 16px;
+$login-container-width: 21.25em;
+$login-container-width-xs: 100%;
+$login-content-padding: 2em;
+$login-decoration-top: 1.5625em;
+$login-decoration-width: 0.75em;
+$login-decoration-height: 3.125em;
+$login-margin-top: 12%;
+$login-margin-top-xs: 0%;
+$login-title-margin-bottom: 1em;
+$smartphone-max-width: 768px;
 
 /******************************** </VARIABLES> ********************************/
 
+
+/********************************* <GENERAL> **********************************/
+
 body {
-  padding: $body-padding;
   font: $font-custom-size $font-custom;
 }
 
@@ -15,12 +31,61 @@ a {
   color: #00B7FF;
 }
 
+/********************************* </GENERAL> *********************************/
+
+
 /********************************* <LOGIN> **********************************/
 
 .blurred-background { 
 	/* Generated with http://gradient.quasi.ink */
 	background-size: cover;
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAADyUlEQVQ4Tx2UzYsbdRjHP7/JZCaZbGazeWk2W9daKEWwSxWr68FDWxUKgoKIvXgRRPDiRfCkNy+CIHoUDyKKgqCX0mqttAiVbmu7dLfZdrPbfes2b5tkJslmkkzmNz/JPn/B9/l8nucrLi1fV1KFBKFipjDDyB/htF0Q4I9GmIaBpuvUXIfdapXecMhoNEJDkIhbaEogLY2l7TqXLi4irm8uq8f1ClIp9nseruuSzmTIpKbwfR8MndZ+h+LaGoNRgIhE6Louh7KHmM5Pg++z7vX5/doNWg8qiF9vXlEjGWDG4zRaDvXmHvlsDjsxQTabY7te4fbqCl2vTzKZRAYSoWC2cBhNKmr9Nv8Ud7hzYwk9GiK++eNnlU1ncNttREQnnrDITWXY93ps7T6i1evR7vdAaJhRg77nkbJtTF3HH0rWvX2uXr9Nr9pkfn4O8d2/F9Sg18OMmjQdl3QuQ9pOUWk2WF4roekRplJpZBAg/YDxTB/KHqy+3XC4vbLBf0t3OPn0UV4+8Szix1t/Kl0JEtYEjW6b9sAjRLBcLIIQ5PJ5QhkSDodYlgUhhEIw0iNsPt5jYWGRjt9j/vgxnsxmEF9e/kXZiQRCaWjRCNvVMhvbOweWC9MFNE3HcRyOjJlpAqfRINQ0HN/n/sNHrJc2MYwIJ/N53n7tNOL7hctKaBpDGVBcK1FvNYhGo9gTSUwzRqPRwk7aTCVTtFp7xA0dO51lvVbl7spDOm2PJzJpPjh7hlPHjyB+Wrii9HiMB1ub3L1fJDFpM53JIITAdTsHCcd2m3tNQjni5Ik5On2fW6slHqzv4AcKG8V78y/wyktziK/+/k15/pDFe0vYyUlyuRxCBniDAVEjjpQhjuuihMZkIoEVi1Fze5TKVTZ2qjTcDgUrzkevnubMi88gvr56Qd0s3sUwomQnUyhdAymJEEHXDcrVKgN/iJ2aJKEnGARDavsdKs0uK6tl3PU6yViUN88+z0zKQHz8w7dqx9kjHjNpVKqoMOSpI7PEYxZKKcZHrzSBFY+hSQ2n71Huttmtd1le2ILdFipuYuaivPXcMcQ7X3yuOv0eISGtWo3D+WmOHjuKPxgQqhAZSpJTNiqUDPoBrWGfen/AaqlCeXEHLfAIxyhSCT599w3EqQ/fV4WpDPlCDqfrkkommUjZBwLGPzYuCInCV5KhH1Jpt2n7ULq3S/9hi4gOYdwAS+P43Czi3GefqPPnXidm6Fy89hfWZJKoqaMJRSADoobBKIT9MGCv2WZj9zGeNCiv1pAVB2FaKCuCsAUzswX+BwvY6V3+O+qZAAAAAElFTkSuQmCC");
+}
+
+.btn-green{
+	color: $color-white;
+	background-color: $color-primary;
+	border:0;
+	border-radius: $btn-radius;
+}
+
+.btn-green:active, .btn-green:focus, .btn-green:hover{
+	color: $color-white;
+	background-color: $color-primary-dark;
+	border:0;
+	border-radius: $btn-radius;
+}
+
+.login-container {
+	background-color: $color-white;
+	width: $login-container-width;
+	margin: auto;
+	margin-top: $login-margin-top;
+	position: relative;
+}
+
+.login-content{
+	padding: $login-content-padding;
+}
+
+.login-decoration{
+	position: absolute;
+    top: $login-decoration-top;
+    width: $login-decoration-width;
+    height: $login-decoration-height;
+    background: $color-primary;
+}
+
+.login-title{
+	margin-bottom: $login-title-margin-bottom;
+}
+
+/* Extra Small devices (smartphones, until 768px) */
+@media (max-width: $smartphone-max-width) { 
+	.login-container {
+		width: $login-container-width-xs;
+		margin-top: $login-margin-top-xs;
+	}
 }
 
 /********************************* </LOGIN> **********************************/
