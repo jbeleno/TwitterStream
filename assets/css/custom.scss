@@ -1,22 +1,28 @@
 /******************************** <VARIABLES> ********************************/
 
-$body-padding: 50px;
-$btn-radius: 0.125em;
+$body-background: #E9E9E9;
+$btn-radius: 0.125rem;
 $color-primary-dark: #00796B;
 $color-primary: #009688;
 $color-white: #FFFFFF; 
+$content-margin-left: 14.375rem;
+$content-margin-top: 3.375rem;
+$content-min-height: 11.5625rem;
 $font-custom: "Lucida Grande", Helvetica, Arial, sans-serif;
 $font-custom-size: 16px;
-$login-container-width: 21.25em;
+$login-container-width: 21.25rem;
 $login-container-width-xs: 100%;
-$login-content-padding: 2em;
-$login-decoration-top: 1.5625em;
-$login-decoration-width: 0.75em;
-$login-decoration-height: 3.125em;
+$login-content-padding: 2rem;
+$login-decoration-top: 1.5625rem;
+$login-decoration-width: 0.75rem;
+$login-decoration-height: 3.125rem;
 $login-margin-top: 12%;
 $login-margin-top-xs: 0%;
-$login-title-margin-bottom: 1em;
-$smartphone-max-width: 768px;
+$login-title-margin-bottom: 2rem;
+$side-menu-background: #373A3C;
+$side-menu-with: 14.375rem;
+$smartphone-max-xs-width: 34rem;
+$smartphone-max-sm-width: 48rem;
 
 /******************************** </VARIABLES> ********************************/
 
@@ -25,6 +31,7 @@ $smartphone-max-width: 768px;
 
 body {
   font: $font-custom-size $font-custom;
+  background-color: $body-background;
 }
 
 a {
@@ -80,8 +87,8 @@ a {
 	margin-bottom: $login-title-margin-bottom;
 }
 
-/* Extra Small devices (smartphones, until 768px) */
-@media (max-width: $smartphone-max-width) { 
+/* Extra Small devices (smartphones, until 34em) */
+@media (max-width: $smartphone-max-xs-width) { 
 	.login-container {
 		width: $login-container-width-xs;
 		margin-top: $login-margin-top-xs;
@@ -89,3 +96,34 @@ a {
 }
 
 /********************************* </LOGIN> **********************************/
+
+/********************************* <SIDE MENU> *******************************/
+
+.side-menu{
+	position: fixed;
+	top: 0;
+	left:0;
+	width: $side-menu-with;
+	min-height: 100%;
+	background-color: $side-menu-background;
+}
+
+/********************************* </SIDE MENU> *******************************/
+
+
+/********************************* <CONTENT> **********************************/
+
+.content{
+	min-height: $content-min-height;
+	margin-top: $content-margin-top;
+	margin-left: $content-margin-left;
+}
+
+/* Small devices (smartphones, until 48em) */
+@media (max-width: $smartphone-max-sm-width) { 
+	.content {
+		margin-left: 0;
+	}
+}
+
+/********************************* </CONTENT> *********************************/
