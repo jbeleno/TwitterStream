@@ -2,6 +2,9 @@
 
 $body-background: #E9E9E9;
 $btn-radius: 0.125rem;
+$color-gray: #EEEEEE;
+$color-gray-dark: #373A3C;
+$color-gray-dark2: #222222;
 $color-primary-dark: #00796B;
 $color-primary: #009688;
 $color-white: #FFFFFF; 
@@ -10,6 +13,9 @@ $content-margin-top: 3.375rem;
 $content-min-height: 11.5625rem;
 $font-custom: "Lucida Grande", Helvetica, Arial, sans-serif;
 $font-custom-size: 16px;
+$font-14: 0.875rem;
+$font-13: 0.8125rem;
+$font-12: 0.75rem;
 $login-container-width: 21.25rem;
 $login-container-width-xs: 100%;
 $login-content-padding: 2rem;
@@ -19,8 +25,14 @@ $login-decoration-height: 3.125rem;
 $login-margin-top: 12%;
 $login-margin-top-xs: 0%;
 $login-title-margin-bottom: 2rem;
-$side-menu-background: #373A3C;
 $side-menu-with: 14.375rem;
+$side-menu-icon-width: 4rem;
+$side-menu-icon-height: $side-menu-icon-width;
+$side-menu-icon-margin: 2rem 0px;
+$side-menu-item-padding: 0.625rem 0.75rem;
+$side-menu-item-border-left: 0.3125em solid $color-gray-dark;
+$side-menu-item-selected-border-left: 0.3125em solid $color-primary;
+$side-menu-item-icon-padding-right: 0.5rem;
 $smartphone-max-xs-width: 34rem;
 $smartphone-max-sm-width: 48rem;
 
@@ -29,7 +41,7 @@ $smartphone-max-sm-width: 48rem;
 
 /********************************* <GENERAL> **********************************/
 
-body {
+body{
   font: $font-custom-size $font-custom;
   background-color: $body-background;
 }
@@ -105,7 +117,45 @@ a {
 	left:0;
 	width: $side-menu-with;
 	min-height: 100%;
-	background-color: $side-menu-background;
+	background-color: $color-gray-dark
+}
+
+.side-menu-header{
+	padding: $side-menu-item-padding;
+	color: $color-white;
+	font-size: $font-12;
+}
+
+.side-menu-item{
+	color: $color-gray;
+	font-size: $font-14;
+	padding: $side-menu-item-padding;
+	border-left: $side-menu-item-border-left;
+	cursor: pointer;
+}
+
+.side-menu-icon{
+	width: $side-menu-icon-width;
+	height: $side-menu-icon-height;
+	margin: $side-menu-icon-margin;
+}
+
+.side-menu > .active{
+	color: $color-white;
+	border-left: $side-menu-item-selected-border-left;
+	background-color: $color-gray-dark2;
+	cursor:pointer;
+}
+
+.side-menu-item-icon{
+	padding-right: $side-menu-item-icon-padding-right;
+}
+
+.side-menu-item:active, .side-menu-item:focus, .side-menu-item:hover{
+	color: $color-white;
+	border-left: $side-menu-item-selected-border-left;
+	background-color: $color-gray-dark2;
+	cursor:pointer;
 }
 
 /********************************* </SIDE MENU> *******************************/
