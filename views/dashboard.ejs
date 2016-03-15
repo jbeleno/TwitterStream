@@ -47,13 +47,13 @@
         <!-- /.side-menu-header -->
 
         <div class="side-menu-item active">
-            <span class="fa fa-user side-menu-item-icon"></span>
+            <span class="fa fa-database side-menu-item-icon"></span>
             <span>Projects</span>
         </div>
         <!-- /.side-menu-item -->
 
         <div class="side-menu-item">
-            <span class="fa fa-user side-menu-item-icon"></span>
+            <span class="fa fa-power-off side-menu-item-icon"></span>
             <span>Log Out</span>
         </div>
         <!-- /.side-menu-item -->
@@ -62,7 +62,79 @@
     <!-- /.side-menu -->
 
     <div class="content">
+        <h4>
+            <span>Projects</span>
+            <span class="custom-breadcrumb">
+                <span>
+                    <span class="fa fa-database"></span>
+                    <span>Projects</span>    
+                </span>
+            </span>
+            <!-- /.custom-breadcrumb -->
+        </h4>
+
+        <table class="table table-striped margin-top-3">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Project Name</th>
+                    <th>Files</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="gray-link">Semantic reasearch over twitter data</td>
+                    <td>332</td>
+                    <td>
+                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
+                            <span class="fa fa-download"></span>
+                        </button>
+                        <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger-outline margin-top-025" data-toggle="tooltip" title="Delete">
+                            <span class="fa fa-times"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="gray-link">Semantic reasearch over twitter data</td>
+                    <td>332</td>
+                    <td>
+                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
+                            <span class="fa fa-download"></span>
+                        </button>
+                        <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger-outline margin-top-025" data-toggle="tooltip" title="Delete">
+                            <span class="fa fa-times"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="gray-link">Semantic reasearch over twitter data</td>
+                    <td>332</td>
+                    <td>
+                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
+                            <span class="fa fa-download"></span>
+                        </button>
+                        <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger-outline margin-top-025" data-toggle="tooltip" title="Delete">
+                            <span class="fa fa-times"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         
+
     </div>
     <!-- /.content -->
 
@@ -70,5 +142,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
+    <!-- Custom Javascript -->
+    <script type="text/javascript">
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>

@@ -11,6 +11,7 @@ $color-white: #FFFFFF;
 $content-margin-left: 14.375rem;
 $content-margin-top: 3.375rem;
 $content-min-height: 11.5625rem;
+$content-padding: 0.625rem;
 $font-custom: "Lucida Grande", Helvetica, Arial, sans-serif;
 $font-custom-size: 16px;
 $font-14: 0.875rem;
@@ -25,6 +26,11 @@ $login-decoration-height: 3.125rem;
 $login-margin-top: 12%;
 $login-margin-top-xs: 0%;
 $login-title-margin-bottom: 2rem;
+$margin-025: 0.25rem;
+$margin-05: 0.5rem;
+$margin-1: 1rem;
+$margin-2: 2rem;
+$margin-3: 3rem;
 $side-menu-with: 14.375rem;
 $side-menu-icon-width: 4rem;
 $side-menu-icon-height: $side-menu-icon-width;
@@ -48,6 +54,20 @@ body{
 
 a {
   color: #00B7FF;
+}
+
+.gray-link{
+	font-weight: bold;
+	cursor: pointer;
+	color: $color-gray-dark;
+}
+
+.margin-top-025{
+	margin-top: $margin-025;
+}
+
+.margin-top-3{
+	margin-top: $margin-3;
 }
 
 /********************************* </GENERAL> *********************************/
@@ -164,9 +184,20 @@ a {
 /********************************* <CONTENT> **********************************/
 
 .content{
+	position: relative;
 	min-height: $content-min-height;
 	margin-top: $content-margin-top;
 	margin-left: $content-margin-left;
+	padding: $content-padding;
+}
+
+.custom-breadcrumb{
+	float: right;
+}
+
+.custom-breadcrumb > span{
+	cursor:pointer;
+	font-size: $font-13;
 }
 
 /* Small devices (smartphones, until 48em) */
