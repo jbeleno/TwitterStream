@@ -26,11 +26,13 @@ $login-decoration-height: 3.125rem;
 $login-margin-top: 12%;
 $login-margin-top-xs: 0%;
 $login-title-margin-bottom: 2rem;
-$margin-025: 0.25rem;
-$margin-05: 0.5rem;
-$margin-1: 1rem;
-$margin-2: 2rem;
-$margin-3: 3rem;
+$size-0: 0rem;
+$size-025: 0.25rem;
+$size-05: 0.5rem;
+$size-075: 0.75rem;
+$size-1: 1rem;
+$size-2: 2rem;
+$size-3: 3rem;
 $side-menu-with: 14.375rem;
 $side-menu-icon-width: 4rem;
 $side-menu-icon-height: $side-menu-icon-width;
@@ -39,8 +41,8 @@ $side-menu-item-padding: 0.625rem 0.75rem;
 $side-menu-item-border-left: 0.3125em solid $color-gray-dark;
 $side-menu-item-selected-border-left: 0.3125em solid $color-primary;
 $side-menu-item-icon-padding-right: 0.5rem;
-$smartphone-max-xs-width: 34rem;
-$smartphone-max-sm-width: 48rem;
+$smartphone-max-xs-width: 544px;
+$smartphone-max-sm-width: 767px;
 
 /******************************** </VARIABLES> ********************************/
 
@@ -63,11 +65,15 @@ a {
 }
 
 .margin-top-025{
-	margin-top: $margin-025;
+	margin-top: $size-025;
 }
 
 .margin-top-3{
-	margin-top: $margin-3;
+	margin-top: $size-3;
+}
+
+.margin-sides-075{
+	margin: $size-0 $size-075;
 }
 
 /********************************* </GENERAL> *********************************/
@@ -198,6 +204,10 @@ a {
 .custom-breadcrumb > span{
 	cursor:pointer;
 	font-size: $font-13;
+}
+
+.custom-breadcrumb > span.no-pointer{
+	cursor: default;
 }
 
 /* Small devices (smartphones, until 48em) */

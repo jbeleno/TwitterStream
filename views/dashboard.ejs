@@ -39,7 +39,12 @@
         <div class="text-xs-center">
             <img src="http://www.myiconfinder.com/uploads/iconsets/624dc72b6deef6abddf29031c1ac7224.png" class="side-menu-icon">
         </div>
+        <!-- /.text-xs-center -->
         
+        <div class="margin-sides-075">
+            <button type="button" class="btn btn-sm btn-green btn-block">NEW PROJECT</button>
+        </div>
+        <!-- /.margin-025 -->
 
         <div class="side-menu-header">
             MAIN NAVIGATION
@@ -62,6 +67,59 @@
     <!-- /.side-menu -->
 
     <div class="content">
+        <h4>
+            <span>New Project</span>
+            <span class="custom-breadcrumb">
+                <span>
+                    <span class="fa fa-database"></span>
+                    <span>Projects</span>    
+                </span>
+                <span class="no-pointer"> > </span>
+                <span>
+                    <span class="fa fa-plus"></span>
+                    <span>New Project</span>    
+                </span>
+            </span>
+            <!-- /.custom-breadcrumb -->
+        </h4>
+
+        <div class="new-project-form margin-top-3">
+            <div class="form-group row">
+                <label for="input-name" class="col-sm-2 form-control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input-name" placeholder="Project name">
+                </div>
+            </div>
+            <!-- Project name -->
+
+            <div class="form-group row">
+                <label for="input-name" class="col-sm-2 form-control-label">Type of Stream</label>
+                <div class="col-sm-10">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="streamRadios" id="radio-public-stream" value="Public streams" checked>
+                            Public streams
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="streamRadios" id="radio-user-stream" value="User Stream">
+                            User Stream
+                        </label>
+                    </div>
+                    <div class="radio disabled">
+                        <label>
+                            <input type="radio" name="streamRadios" id="radio-site-stream" value="Site Stream">
+                            Site Stream
+                      </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+
+    <div class="content hidden-xs-up">
         <h4>
             <span>Projects</span>
             <span class="custom-breadcrumb">
@@ -132,8 +190,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-        
+        </table>        
 
     </div>
     <!-- /.content -->
