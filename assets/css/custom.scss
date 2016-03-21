@@ -2,7 +2,8 @@
 
 $body-background: #E9E9E9;
 $btn-radius: 0.125rem;
-$color-gray: #EEEEEE;
+$color-gray-light: lightgray;
+$color-gray-light2: #EEEEEE;
 $color-gray-dark: #373A3C;
 $color-gray-dark2: #222222;
 $color-primary-dark: #00796B;
@@ -18,7 +19,6 @@ $font-14: 0.875rem;
 $font-13: 0.8125rem;
 $font-12: 0.75rem;
 $login-container-width: 21.25rem;
-$login-container-width-xs: 100%;
 $login-content-padding: 2rem;
 $login-decoration-top: 1.5625rem;
 $login-decoration-width: 0.75rem;
@@ -26,13 +26,17 @@ $login-decoration-height: 3.125rem;
 $login-margin-top: 12%;
 $login-margin-top-xs: 0%;
 $login-title-margin-bottom: 2rem;
+$map-height: 15rem;
+$new-project-form-width: 518px;
 $size-0: 0rem;
+$size-0125: 0.125em;
 $size-025: 0.25rem;
 $size-05: 0.5rem;
 $size-075: 0.75rem;
 $size-1: 1rem;
 $size-2: 2rem;
 $size-3: 3rem;
+$size-100: 100%;
 $side-menu-with: 14.375rem;
 $side-menu-icon-width: 4rem;
 $side-menu-icon-height: $side-menu-icon-width;
@@ -128,7 +132,7 @@ a {
 /* Extra Small devices (smartphones, until 34em) */
 @media (max-width: $smartphone-max-xs-width) { 
 	.login-container {
-		width: $login-container-width-xs;
+		width: $size-100;
 		margin-top: $login-margin-top-xs;
 	}
 }
@@ -153,7 +157,7 @@ a {
 }
 
 .side-menu-item{
-	color: $color-gray;
+	color: $color-gray-light2;
 	font-size: $font-14;
 	padding: $side-menu-item-padding;
 	border-left: $side-menu-item-border-left;
@@ -194,7 +198,7 @@ a {
 	min-height: $content-min-height;
 	margin-top: $content-margin-top;
 	margin-left: $content-margin-left;
-	padding: $content-padding;
+	padding: $content-padding $size-1;
 }
 
 .custom-breadcrumb{
@@ -208,6 +212,21 @@ a {
 
 .custom-breadcrumb > span.no-pointer{
 	cursor: default;
+}
+
+.new-project-form{
+	width: $size-100;
+	margin: auto;
+	margin-top: $size-3;
+	background: $color-white;
+	padding: $size-2;
+	border: $size-0125 solid $color-gray-light;
+}
+
+#map{
+	width: $size-100;
+	height: $map-height;
+	background: $color-gray-light2;
 }
 
 /* Small devices (smartphones, until 48em) */
