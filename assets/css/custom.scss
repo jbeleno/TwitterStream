@@ -36,6 +36,7 @@ $size-075: 0.75rem;
 $size-1: 1rem;
 $size-2: 2rem;
 $size-3: 3rem;
+$size-10: 10rem;
 $size-100: 100%;
 $side-menu-with: 14.375rem;
 $side-menu-icon-width: 4rem;
@@ -96,6 +97,11 @@ a {
 	background-color: $color-primary;
 	border:0;
 	border-radius: $btn-radius;
+}
+
+.btn-standard{
+	width: $size-10;
+
 }
 
 .btn-green:active, .btn-green:focus, .btn-green:hover{
