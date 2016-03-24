@@ -225,6 +225,22 @@
             </div>
             <!-- /Count -->
 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Start Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="input-start-date" placeholder="dd/mm/yyyy hh:ii:ss">
+                </div>
+            </div>
+            <!-- /Start Date -->
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Finish Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="input-finish-date" placeholder="dd/mm/yyyy hh:ii:ss">
+                </div>
+            </div>
+            <!-- /Finish Date -->
+
             <div class="text-xs-center margin-top-3">
                 <button class="btn btn-standard btn-green">SAVE</button>
             </div>
@@ -249,9 +265,8 @@
         <table class="table table-striped margin-top-3">
             <thead class="thead-inverse">
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Project Name</th>
-                    <th>Files</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -259,11 +274,7 @@
                 <tr>
                     <td>1</td>
                     <td class="gray-link">Semantic reasearch over twitter data</td>
-                    <td>332</td>
                     <td>
-                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
-                            <span class="fa fa-download"></span>
-                        </button>
                         <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
                             <span class="fa fa-eye"></span>
                         </button>
@@ -275,11 +286,7 @@
                 <tr>
                     <td>2</td>
                     <td class="gray-link">Semantic reasearch over twitter data</td>
-                    <td>332</td>
                     <td>
-                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
-                            <span class="fa fa-download"></span>
-                        </button>
                         <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
                             <span class="fa fa-eye"></span>
                         </button>
@@ -291,11 +298,7 @@
                 <tr>
                     <td>3</td>
                     <td class="gray-link">Semantic reasearch over twitter data</td>
-                    <td>332</td>
                     <td>
-                        <button type="button" class="btn btn-primary-outline margin-top-025" data-toggle="tooltip" title="Download">
-                            <span class="fa fa-download"></span>
-                        </button>
                         <button type="button" class="btn btn-success-outline margin-top-025" data-toggle="tooltip" title="View">
                             <span class="fa fa-eye"></span>
                         </button>
@@ -326,70 +329,83 @@
     <!-- Custom Javascript -->
     <script type="text/javascript">
 
-        var lat1, long1, lat2, long2;
+        var _map = (function() {
 
-        function loadMap(){
-            // Load initial map and center it at UNICAMP
-            L.mapbox.accessToken = 'pk.eyJ1IjoiamJlbGVubyIsImEiOiJRbGhXRkhVIn0.h2cvX1dQMRnGDT3OBppm3A';
-            var map = L.mapbox.map('map', 'mapbox.streets').setView([-22.8171043, -47.069731], 5);
+            // Private variables
+            var lat1, long1, lat2, long2;
 
-            // Add a feature group
-            var featureGroup = L.featureGroup().addTo(map);
+            var _init = function(){
+                loadMap();
+            }
 
-            // Enable the kind of graphic you want allow users to draw
-            var drawControl = new L.Control.Draw({
-              edit: {
-                featureGroup: featureGroup
-                },
-                draw: {
-                    polygon: false,
-                    polyline: false,
-                    rectangle: true,
-                    circle: false,
-                    marker: false
+            function loadMap(){
+                // Load initial map and center it at UNICAMP
+                L.mapbox.accessToken = 'pk.eyJ1IjoiamJlbGVubyIsImEiOiJRbGhXRkhVIn0.h2cvX1dQMRnGDT3OBppm3A';
+                var map = L.mapbox.map('map', 'mapbox.streets').setView([-22.8171043, -47.069731], 5);
+
+                // Add a feature group
+                var featureGroup = L.featureGroup().addTo(map);
+
+                // Enable the kind of graphic you want allow users to draw
+                var drawControl = new L.Control.Draw({
+                  edit: {
+                    featureGroup: featureGroup
+                    },
+                    draw: {
+                        polygon: false,
+                        polyline: false,
+                        rectangle: true,
+                        circle: false,
+                        marker: false
+                    }
+                }).addTo(map);
+
+                // Set listeners to create and update the polygon(rectangle) area
+                map.on('draw:created', showPolygonArea);
+                map.on('draw:edited', showPolygonAreaEdited);
+
+                // Re-draw the rectangle in the map
+                function showPolygonAreaEdited(e) {
+                    e.layers.eachLayer(function(layer) {
+                        showPolygonArea({ layer: layer });
+                    });
                 }
-            }).addTo(map);
 
-            // Set listeners to create and update the polygon(rectangle) area
-            map.on('draw:created', showPolygonArea);
-            map.on('draw:edited', showPolygonAreaEdited);
+                // Draw the rectangle in the map
+                function showPolygonArea(e) {
+                    featureGroup.clearLayers();
+                    featureGroup.addLayer(e.layer);
+                    e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
+                    e.layer.openPopup();
 
-            // Re-draw the rectangle in the map
-            function showPolygonAreaEdited(e) {
-                e.layers.eachLayer(function(layer) {
-                    showPolygonArea({ layer: layer });
-                });
+                    // I did this shit by myself, because I didn't found so much
+                    // information in the documentation, so I read the code of
+                    // leaflet-geodesy and found some interesting things just 
+                    // when printing console.log(e.layer.toGeoJSON());
+                    // There's an array of coordinates inside geometry that contains
+                    // in this case 5 arrays with (lat, long) information, but
+                    // as I'm working with a rectangle the first and the final point
+                    // are the same, but I'm going to work just with the first and the
+                    // third value, because Twitter Streaming API just require that
+                    lat1 = e.layer.toGeoJSON().geometry.coordinates[0][0][0];
+                    long1 = e.layer.toGeoJSON().geometry.coordinates[0][0][1];
+                    lat2 = e.layer.toGeoJSON().geometry.coordinates[0][2][0];
+                    long2 = e.layer.toGeoJSON().geometry.coordinates[0][2][1];
+                }
             }
 
-            // Draw the rectangle in the map
-            function showPolygonArea(e) {
-                featureGroup.clearLayers();
-                featureGroup.addLayer(e.layer);
-                e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
-                e.layer.openPopup();
-
-                // I did this shit by myself, because I didn't found so much
-                // information in the documentation, so I read the code of
-                // leaflet-geodesy and found some interesting things just 
-                // when printing console.log(e.layer.toGeoJSON());
-                // There's an array of coordinates inside geometry that contains
-                // in this case 5 arrays with (lat, long) information, but
-                // as I'm working with a rectangle the first and the final point
-                // are the same, but I'm going to work just with the first and the
-                // third value, because Twitter Streaming API just require that
-                lat1 = e.layer.toGeoJSON().geometry.coordinates[0][0][0];
-                long1 = e.layer.toGeoJSON().geometry.coordinates[0][0][1];
-                lat2 = e.layer.toGeoJSON().geometry.coordinates[0][2][0];
-                long2 = e.layer.toGeoJSON().geometry.coordinates[0][2][1];
+            return {
+                init: _init
             }
-        }
 
-        $(function () {
+        })()
+
+        $( document ).ready(function() {
             // Activate tooltips
             $('[data-toggle="tooltip"]').tooltip();
 
             // Load map
-            loadMap();
+            _map.init();
         })
     </script>
 </body>
