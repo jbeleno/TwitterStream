@@ -30,7 +30,7 @@
                         <label class="sr-only" for="user">User</label>
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-user" aria-hidden="true"></span></div>
-                          <input type="text" class="form-control" id="user" placeholder="User">
+                          <input type="text" class="form-control" id="user" placeholder="Username">
                         </div>
                     </div>
                     <!-- /.form-group -->
@@ -39,12 +39,16 @@
                         <label class="sr-only" for="password">User</label>
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-key" aria-hidden="true"></span></div>
-                          <input type="text" class="form-control" id="password" placeholder="Password">
+                          <input type="password" class="form-control" id="password" placeholder="Password">
                         </div>
                     </div>
                     <!-- /.form-group -->
 
-                    <button type="button" class="btn btn-lg btn-green btn-block">SIGN IN</button>
+                    <button id="btn-login" type="button" class="btn btn-lg btn-green btn-block">SIGN IN</button>
+
+                    <br>
+                    <div id="msg-box"></div>
+                    <!-- /#msg-box -->
 
                 </div>
                 <!-- /.login-content -->
@@ -59,5 +63,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
+    <!-- Basic javascript functions -->
+    <script src="/js/basic.js"></script>
+
+    <script type="text/javascript">
+
+        // An authentication function using POST request
+        var login = function(e){
+            postRequest(
+                'users/login',
+                {   
+                    username: $("#user").val(),
+                    password: $("#password").val()
+                },
+                function(data){
+                    console.log(JSON.stringify(data));
+                    if(data.status == "OK"){
+                        // If the user is authenticated then reload the page, because it'll load
+                        // the dashboard instead of login page
+                        location.reload();
+                    }else{
+                        showMessage(data.message, '#msg-box', 'alert-danger');
+                    }
+                },function(){
+                    alert('Ha ocurrido un error, verifica tu conexión e intenta nuevamente.');
+            });
+        }
+
+        $( document ).ready(function() {
+            // When the user clic in Log-in button or press 'enter' key, then the
+            // user sends an authentication request
+            $("#btn-login").click(login);
+            $("#password").keypress(function(event) {
+                if (event.which == 13) {
+                    login();
+                }
+            });
+            
+        });
+    </script>
 </body>
 </html>

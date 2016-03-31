@@ -1,7 +1,7 @@
 /**! TWITTER STREAM COLLECTOR
 * @Author  Juan Sebastián Beleño Díaz
 * @Email   <jsbeleno@gmail.com>
-* @version 0.1.0
+* @version 1.0.0
 *
 * This file handles with all the schema in the mongo database, it's the base
 * and the central file to use all the mongo queries. 
