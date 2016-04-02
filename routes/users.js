@@ -37,22 +37,44 @@ router.post('/create', function(req, res, next) {
 /* POST user authentication. */
 router.post('/login', function(req, res, next) {
 
-	// Getting the username and password
-	var username = req.body.username;
-	var password = req.body.password;
+	// If the user is already logged return OK by default, otherwise execute the
+	// query to find a match among the username and password in the database
+	if(!req.session.idUser){
 
-	// Looking for a user with that username and password
-	User.findOne({ 'user': username, 'password': password }, 'id', function (err, user) {
-	  	if (err) {
-	  		res.json({status: "BAD", message: "Error: There's a problem in our server, please try later."});
-	  	}else{
-	  		if(user){
-	  			res.json({status: "OK"});
-	  		}else{
-	  			res.json({status: "BAD", message: "Error: wrong user and/or password, please provide a valid user and password."});
-	  		}
-	  	}
-	});
+		// Getting the username and password
+		var username = req.body.username;
+		var password = req.body.password;
+
+		// Looking for a user with that username and password
+		User.findOne({ 'user': username, 'password': password }, 
+					'id', function (err, user) {
+		  	if (err) {
+		  		res.json({
+	  				status: "BAD", 
+	  				message: "Error: There's a problem in our server, please try later."
+		  		});
+		  	}else{
+		  		if(user){
+		  			// Saving the session id, the save function is just necessary
+		  			// when the request type is different from GET
+		  			console.log("BEFORE: "+req.session.idUser);
+		  			req.session.idUser = user.id;
+		  			console.log("AFTER: "+req.session.idUser);
+	      			req.session.save(function(err) {});
+
+		  			res.json({status: "OK"});
+		  		}else{
+		  			res.json({
+		  				status: "BAD", 
+		  				message: "Wrong user and/or password, please provide a valid user and password."
+		  			});
+		  		}
+		  	}
+		});
+
+	}else{
+		res.json({status: "OK"})
+	}
 
 });
 
