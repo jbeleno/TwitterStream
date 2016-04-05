@@ -24,6 +24,6 @@ module.exports = function(){
 	    secret: process.env.REDIS_KEY,
 	    resave: true,
 	    saveUninitialized: true,
-	    cookie: { secure: true, maxAge: hour}
+	    cookie: { secure: 'auto', maxAge: hour}
 	});
 }

@@ -58,9 +58,14 @@ router.post('/login', function(req, res, next) {
 		  			// Saving the session id, the save function is just necessary
 		  			// when the request type is different from GET
 		  			req.session.idUser = user._id;
-	      			req.session.save(function(err) {});
+	      			req.session.save(
+	      				function (err) {
+	      					if(!err){
+		      					res.json({status: "OK"});
+		      				}
+	      				}
+	      			);
 
-		  			res.json({status: "OK"});
 		  		}else{
 		  			res.json({
 		  				status: "BAD", 
