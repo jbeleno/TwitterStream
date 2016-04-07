@@ -31,7 +31,7 @@ var ProjectSchema = new Schema({
 	date: 		{ type: Date, default: Date.now }
 });
 
-var Stream = mongoose.model('Project', ProjectSchema);
+var Project = mongoose.model('Project', ProjectSchema);
 
 
 var StreamSchema = new Schema({

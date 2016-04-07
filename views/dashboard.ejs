@@ -396,9 +396,39 @@
             }
 
             return {
-                init: _init
+                init: _init,
+                location: {
+                    latitude_start: lat1,
+                    longitude_start: long1,
+                    latitude_finish: lat2,
+                    longitude_finish: long2
+                }
             }
 
+        })()
+
+        var _project = (function(){
+
+            // Declare pointers
+            var name = $("#input-name");
+            var follow = $("#textarea-follow");
+            var track = $("#textarea-track");
+            var languages = $("#textarea-language");
+            var count = $("#input-count");
+            var start_date = $("#input-start-date");
+            var finish_date = $("#input-finish-date");
+
+            // Get the location from the map
+            var location = _map.location;
+            var latitude_start = location.latitude_start;
+            var longitude_start = location.longitude_start;
+            var latitude_finish = location.latitude_finish;
+            var longitude_finish = location.longitude_finish;
+
+            function create(){
+
+            }
+            
         })()
 
         $( document ).ready(function() {
