@@ -50,6 +50,9 @@
     <!-- React View Loader -->
     <script src="/js/dashboard.js"></script>
 
+    <!-- Basic Javascript -->
+    <script src="/js/basic.js"></script>
+
     <!-- Custom Javascript -->
     <script type="text/javascript">
 
@@ -148,8 +151,47 @@
             var latitude_finish = location.latitude_finish;
             var longitude_finish = location.longitude_finish;
 
-            function create(){
+            // Perform a POST request to save data about a new project, if 
+            // everything went OK reload the page to show the new project 
+            // in dashboard, but if something went wrong show a message to the 
+            // user
+            function _create(btn){
+                var errorMessage = "Ups! it seems we have problems in our servers, please contact us";
+                disableButton(btn);
+                postRequest(
+                    'projects/create',
+                    {
+                        name: name.val(),
+                        follow: follow.val(),
+                        track: track.val(),
+                        languages: languages.val(),
+                        count: count.val(),
+                        start_date: start_date.val(),
+                        finish_date: finish_date.val(),
+                        latitude_start: latitude_start,
+                        longitude_start: longitude_start,
+                        latitude_finish: latitude_finish,
+                        longitude_finish: longitude_finish
+                    },
+                    function(res){
+                        enableButton(btn);
+                        if(res.status = "OK"){
+                            location.reload();
+                        }else if(res.msg){
+                            showMessage(res.msg, "#errorBoxNewProject", "alert-danger");
+                        }else{
+                            showMessage(errorMessage, "#errorBoxNewProject", "alert-danger");
+                        }
+                    },
+                    function(err){
+                        enableButton(btn);
+                        showMessage(errorMessage, "#errorBoxNewProject", "alert-danger");
+                    }
+                );
+            }
 
+            return {
+                create: _create
             }
             
         })()
@@ -160,6 +202,15 @@
 
             // Load map
             _map.init();
+
+            // When the user clics on the button, it's send a request to the server
+            // to save a new project
+            $("#btnNewProject").click(
+                function(){
+                    _project.create("#btnNewProject");
+                }
+            );
+            
         })
     </script>
 </body>

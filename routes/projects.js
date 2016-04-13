@@ -21,12 +21,18 @@ router.post('/create', function(req, res, next) {
 		var name = req.body.name;
 		var follow = req.body.follow;
 		var track = req.body.track;
-		var location = req.body.location;
 		var languages = req.body.languages;
 		var count = req.body.count;
 		var start_date = req.body.start_date;
 		var finish_date = req.body.finish_date;
 		var user = req.session.idUser;
+
+		var location = [{
+			latitude_start: req.body.latitude_start,
+			longitude_start: req.body.longitude_start,
+			latitude_finish: req.body.latitude_finish,
+			longitude_finish: req.body.longitude_finish
+		}];
 
 		// Setting values for a user
 		var project = new Project ({
@@ -45,7 +51,7 @@ router.post('/create', function(req, res, next) {
 		project.save(
 			function (err) {
 				if (err){
-					res.json({status: "BAD", msg: "Ups! There's a problem saving the project, please contact us."});
+					res.json({status: "BAD", msg: "Ups! There's a problem saving the project, please contact us.", error: err});
 				}else{
 					res.json({status: "OK"});
 				}

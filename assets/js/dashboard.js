@@ -216,7 +216,8 @@ var NewProjectForm = React.createClass({
 	            </div>
 	     
 	            <div className="text-xs-center margin-top-3">
-	                <button className="btn btn-standard btn-green">SAVE</button>
+	            	<div id="errorBoxNewProject"></div>
+	                <button id="btnNewProject" className="btn btn-standard btn-green">SAVE</button>
 	            </div>
 	        </div>
 		);

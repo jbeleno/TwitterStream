@@ -58,6 +58,27 @@ var deleteRequest = function (url,data,done,error){
     }).done(done).error(error);
 }
 
+/*
+ * DESCRIPTION: This function is disable a button
+ *
+ * PARAMETERS:  
+ * btn: This is the parameter for button identifier/class we want to disable
+ */
+var disableButton = function (btn){
+    $(btn).addClass('disabled');
+}
+
+
+/*
+ * DESCRIPTION: This function is disable a button
+ *
+ * PARAMETERS:  
+ * btn: This is the parameter for button identifier/class we want to enable
+ */
+var enableButton = function (btn){
+    $(btn).removeClass('disabled');
+}
+
 
 /*
  * DESCRIPTION: This function is for creating (and sometimes receiving)  
@@ -109,7 +130,7 @@ var putRequest = function (url,data,done,error){
 
 /*
  * DESCRIPTION: This function is showing messages in an HTML container and
- 				adding classes to improve the style of the message.
+ *				adding classes to improve the style of the message.
  *
  * PARAMETERS:  
  * msg: This is the message.
