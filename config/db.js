@@ -25,8 +25,7 @@ var ProjectSchema = new Schema({
 	location : 	{ type : String },
 	languages : { type : String },
 	count : 	{ type : Number },
-	start_date: { type: Date, default: Date.now },
-	finish_date:{ type: Date, default: Date.now },
+	status: 	{ type: Boolean, default: true },
 	user : 	    { type : Object , default : {} },
 	date: 		{ type: Date, default: Date.now }
 });

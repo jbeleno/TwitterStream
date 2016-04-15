@@ -59,13 +59,18 @@
         var _map = (function() {
 
             // Private variables
-            var lat1, long1, lat2, long2;
+            var latitude1, longitude1, latitude2, longitude2;
 
             var _init = function(){
                 loadMap();
             }
 
             function loadMap(){
+
+                // MECHETE ALERT: This was doing to grant access to these variables in 
+                // nested functions.
+                latitude1 = longitude1 = latitude2 = longitude2 = null;
+
                 // Load initial map and center it at UNICAMP
                 L.mapbox.accessToken = 'pk.eyJ1IjoiamJlbGVubyIsImEiOiJRbGhXRkhVIn0.h2cvX1dQMRnGDT3OBppm3A';
                 var map = L.mapbox.map('map', 'mapbox.streets').setView([-22.8171043, -47.069731], 5);
@@ -114,24 +119,28 @@
                     // as I'm working with a rectangle the first and the final point
                     // are the same, but I'm going to work just with the first and the
                     // third value, because Twitter Streaming API just require that
-                    lat1 = e.layer.toGeoJSON().geometry.coordinates[0][0][0];
-                    long1 = e.layer.toGeoJSON().geometry.coordinates[0][0][1];
-                    lat2 = e.layer.toGeoJSON().geometry.coordinates[0][2][0];
-                    long2 = e.layer.toGeoJSON().geometry.coordinates[0][2][1];
+                    latitude1 = e.layer.toGeoJSON().geometry.coordinates[0][0][0];
+                    longitude1 = e.layer.toGeoJSON().geometry.coordinates[0][0][1];
+                    latitude2 = e.layer.toGeoJSON().geometry.coordinates[0][2][0];
+                    longitude2 = e.layer.toGeoJSON().geometry.coordinates[0][2][1];
                 }
+            }
+
+            var _location = function (){
+                return {
+                    latitude_start: latitude1,
+                    longitude_start: longitude1,
+                    latitude_finish: latitude2,
+                    longitude_finish: longitude2
+                };
             }
 
             return {
                 init: _init,
-                location: {
-                    latitude_start: lat1,
-                    longitude_start: long1,
-                    latitude_finish: lat2,
-                    longitude_finish: long2
-                }
-            }
+                location: _location
+            };
 
-        })()
+        })();
 
         var _project = (function(){
 
@@ -144,18 +153,19 @@
             var start_date = $("#input-start-date");
             var finish_date = $("#input-finish-date");
 
-            // Get the location from the map
-            var location = _map.location;
-            var latitude_start = location.latitude_start;
-            var longitude_start = location.longitude_start;
-            var latitude_finish = location.latitude_finish;
-            var longitude_finish = location.longitude_finish;
-
             // Perform a POST request to save data about a new project, if 
             // everything went OK reload the page to show the new project 
             // in dashboard, but if something went wrong show a message to the 
             // user
             function _create(btn){
+
+                // Get the location from the map
+                var location = _map.location();
+                var latitude_start = location.latitude_start;
+                var longitude_start = location.longitude_start;
+                var latitude_finish = location.latitude_finish;
+                var longitude_finish = location.longitude_finish;
+
                 var errorMessage = "Ups! it seems we have problems in our servers, please contact us";
                 disableButton(btn);
                 postRequest(
@@ -166,8 +176,6 @@
                         track: track.val(),
                         languages: languages.val(),
                         count: count.val(),
-                        start_date: start_date.val(),
-                        finish_date: finish_date.val(),
                         latitude_start: latitude_start,
                         longitude_start: longitude_start,
                         latitude_finish: latitude_finish,
@@ -175,8 +183,8 @@
                     },
                     function(res){
                         enableButton(btn);
-                        if(res.status = "OK"){
-                            location.reload();
+                        if(res.status == "OK"){
+                            window.location.reload();
                         }else if(res.msg){
                             showMessage(res.msg, "#errorBoxNewProject", "alert-danger");
                         }else{
@@ -194,7 +202,7 @@
                 create: _create
             }
             
-        })()
+        })();
 
         $( document ).ready(function() {
             // Activate tooltips

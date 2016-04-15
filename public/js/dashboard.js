@@ -380,34 +380,6 @@ var NewProjectForm = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "form-group row" },
-				React.createElement(
-					"label",
-					{ className: "col-sm-2 form-control-label" },
-					"Start Date"
-				),
-				React.createElement(
-					"div",
-					{ className: "col-sm-10" },
-					React.createElement("input", { type: "text", className: "form-control", id: "input-start-date", placeholder: "dd/mm/yyyy hh:ii:ss" })
-				)
-			),
-			React.createElement(
-				"div",
-				{ className: "form-group row" },
-				React.createElement(
-					"label",
-					{ className: "col-sm-2 form-control-label" },
-					"Finish Date"
-				),
-				React.createElement(
-					"div",
-					{ className: "col-sm-10" },
-					React.createElement("input", { type: "text", className: "form-control", id: "input-finish-date", placeholder: "dd/mm/yyyy hh:ii:ss" })
-				)
-			),
-			React.createElement(
-				"div",
 				{ className: "text-xs-center margin-top-3" },
 				React.createElement("div", { id: "errorBoxNewProject" }),
 				React.createElement(

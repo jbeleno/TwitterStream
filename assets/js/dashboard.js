@@ -200,20 +200,6 @@ var NewProjectForm = React.createClass({
 	                    <input type="number" className="form-control" id="input-count" placeholder="Number of rows in the stream data requiered" />
 	                </div>
 	            </div>
-
-	            <div className="form-group row">
-	                <label className="col-sm-2 form-control-label">Start Date</label>
-	                <div className="col-sm-10">
-	                    <input type="text" className="form-control" id="input-start-date" placeholder="dd/mm/yyyy hh:ii:ss" />
-	                </div>
-	            </div>
-	    
-	            <div className="form-group row">
-	                <label className="col-sm-2 form-control-label">Finish Date</label>
-	                <div className="col-sm-10">
-	                    <input type="text" className="form-control" id="input-finish-date" placeholder="dd/mm/yyyy hh:ii:ss" />
-	                </div>
-	            </div>
 	     
 	            <div className="text-xs-center margin-top-3">
 	            	<div id="errorBoxNewProject"></div>
