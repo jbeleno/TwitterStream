@@ -28,7 +28,7 @@ router.post('/create', function(req, res, next) {
 	var finish_date = req.body.finish_date;
 	var user = req.session.idUser;
 
-	var location = req.body.longitude_finish + ',' + req.body.latitude_finish + ',' + req.body.longitude_start + ',' + req.body.latitude_start;
+	var location = req.body.longitude_start + ',' + req.body.latitude_start + ',' + req.body.longitude_finish + ',' + req.body.latitude_finish;
 
 	// Variables to handling errors
 	var errorStatus = false;

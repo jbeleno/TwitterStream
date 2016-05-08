@@ -27,20 +27,11 @@ var ProjectSchema = new Schema({
 	count : 	{ type : Number },
 	status: 	{ type: Boolean, default: true },
 	user : 	    { type : Object , default : {} },
+	tweets: 	{ type : Array , default : [] },
 	date: 		{ type: Date, default: Date.now }
 });
 
 var Project = mongoose.model('Project', ProjectSchema);
-
-
-var StreamSchema = new Schema({
-	id : 		{ type : Number, min:0},
-	tweet : 	{ type : String },
-	project : 	{ type : Object , default : {} },
-	date: 		{ type: Date, default: Date.now }
-});
-
-var Stream = mongoose.model('Stream', StreamSchema);
 
 var UserSchema = new Schema({
 	id : 		{ type : Number, min:0},
@@ -54,7 +45,7 @@ var UserSchema = new Schema({
 var User = mongoose.model('User', UserSchema);
 
 
-// Makes connection asynchronously.  Mongoose will queue up database
+// Makes connection asynchronously. Mongoose will queue up database
 // operations and release them when the connection is complete.
 mongoose.connect(uristring, function (err, res) {
 	if (err) {
